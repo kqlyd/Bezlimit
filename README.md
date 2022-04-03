@@ -1,16 +1,23 @@
-# bezlimit
+# Bezlimit
 
-A new Flutter project.
+2 экрана:
+- «Главная» (представленный на видео)
+- «Выбор элемента»
+Главная
+•	Для управления состоянием – использовать GetX. 
+•	Поворот круга должен выполняться синхронно с пролистыванием основного блока контента
+•	В качестве круга можно использовать svg в архиве с тестовым заданием
+•	В момент достижения блока контента верхней границы экрана – необходимо вызывать snackbar
+•	В блоке контента реализовать горизонтальную прокрутку(пример на видео)
+•	Переход на экран «выбор элемента» осуществляется по тапу на одном из блоков в горизонтальной прокрутке
+•	Включить debugRepaintRainbowEnabled = true;
 
-## Getting Started
+Выбор элемента
+•	Экран содержит поле ввода(только цифры) и кнопку «сохранить»
+•	Максимально возможное число – количество блоков в горизонтальной прокрутке на «главной»
+•	При переходе на экран должен вызываться фокус на поле (соответственно – отображение клавиатуры)
+•	Поле ввода должно содержать значение индекса блока, по которому был выполнен тап.
+•	При тапе по «сохранить» должен выполняться возврат на экран «главная». При этом:
+o	Горизонтальная прокрутка должна прокручиваться до элемента с индексом, который был выбран в поле ввода
+o	Блок, выбранный в поле ввода, должен окрашиваться в цвет, отличный от других блоков
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

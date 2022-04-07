@@ -1,7 +1,7 @@
 import 'package:bezlimit/controller/select_element_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 
 class SelectScreen extends StatelessWidget {
   const SelectScreen({Key? key}) : super(key: key);
@@ -34,16 +34,11 @@ class SaveButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SelectElementController>(
-      init: SelectElementController(),
-      builder: (controller) {
-        return ElevatedButton(
-          onPressed: () {
-            controller.selectFromTextField();
-          },
-          child: const Text('Сохранить'),
-        );
+    return ElevatedButton(
+      onPressed: () {
+        Get.find<SelectElementController>().selectFromTextField();
       },
+      child: const Text('Сохранить'),
     );
   }
 }
@@ -55,21 +50,16 @@ class SelectTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SelectElementController>(
-      init: SelectElementController(),
-      builder: (controller) {
-        return TextField(
-          autofocus: true,
-          controller: controller.inputTextController,
-          inputFormatters: [
-            FilteringTextInputFormatter.digitsOnly,
-          ],
-          keyboardType: TextInputType.number,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-          ),
-        );
-      },
+    return TextField(
+      autofocus: true,
+      controller: Get.find<SelectElementController>().inputTextController,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+      ],
+      keyboardType: TextInputType.number,
+      decoration: const InputDecoration(
+        border: OutlineInputBorder(),
+      ),
     );
   }
 }

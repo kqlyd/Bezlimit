@@ -27,7 +27,7 @@ class AppBarWithCircleDelegate extends SliverPersistentHeaderDelegate {
     percent = percent > 1 ? 1 : percent;
 
     if (percent == 1) {
-      WidgetsBinding.instance?.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         Get.showSnackbar(
           const GetSnackBar(
             message: 'Appbar полностью скрылся',
@@ -37,23 +37,26 @@ class AppBarWithCircleDelegate extends SliverPersistentHeaderDelegate {
       });
     }
 
-    return Container(
-      color: Colors.white,
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            left: -50,
-            top: -50,
-            child: Transform.rotate(
-              angle: -percent * 3,
-              child: SvgPicture.asset(
-                IconPath.circle,
-                height: 300,
-                width: 300,
+    //repaint boundary
+    return RepaintBoundary(
+      child: Container(
+        color: Colors.white,
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+              left: -50,
+              top: -50,
+              child: Transform.rotate(
+                angle: -percent * 3,
+                child: SvgPicture.asset(
+                  IconPath.circle,
+                  height: 300,
+                  width: 300,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

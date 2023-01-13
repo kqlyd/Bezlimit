@@ -12,29 +12,31 @@ class SelectElementController extends GetxController {
       List.generate(10, (index) => ElementModel(index: index, isSelected: false));
 
   void goToSelectScreen(int index) {
+    index++;
     updateSelectedElement(index);
     Get.toNamed('/element');
   }
 
   void selectFromTextField() {
     var newIndex = int.tryParse(inputTextController.text);
+
     if (newIndex == null) {
       Get.showSnackbar(const GetSnackBar(
         title: 'Ошибка',
         message: 'Необходимо ввести число',
         duration: Duration(seconds: 2),
       ));
-    } else if (newIndex > itemList.length - 1) {
+    } else if (newIndex > itemList.length) {
       Get.showSnackbar(GetSnackBar(
         title: 'Ошибка',
-        message: 'Число должно быть меньше ${itemList.length - 1} (включительно)',
+        message: 'Число должно быть меньше ${itemList.length} (включительно)',
         duration: const Duration(seconds: 2),
       ));
     } else {
-      updateSelectedElement(newIndex);
+      updateSelectedElement(newIndex - 1);
       Get.back();
       itemScrollController.animateTo(
-        (SizeConstants.elementWidth + SizeConstants.elementPadding) * newIndex,
+        (SizeConstants.elementWidth + SizeConstants.elementPadding) * (newIndex - 1),
         duration: const Duration(seconds: 1),
         curve: Curves.ease,
       );
